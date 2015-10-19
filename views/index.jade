@@ -1,12 +1,7 @@
-html
-  head
-    title!= title
-  body
-    h1!= message
-    ul.celebrities
-    
-    form(id="celebrity", name="celebrity", action="/celebrity/add", method="post")
-      input(id="celebrityName" type="text", placeholder="Celebrity", name="celeb")
+extends layouts/header
+block content
+      h1!= message
+      ul.celebrities
 
-    script(src='/socket.io/socket.io.js')
-    script(src='/js/script.js')
+      script(src='/socket.io/socket.io.js')
+      script(src='/js/script.js')

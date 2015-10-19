@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    title!= title
+  body
+    nav.navbar.navbar-default
+      div.container-fluid
+        div.navbar-header
+          button.navbar-toggle.collapsed(
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+          )
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a(href="#").navbar-brand
+        
+        div#bs-example-navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href="/") Home
+                
+          ul.nav.navbar-nav.navbar-right
+            form(id="celebrity", class="navbar-form", action="/celebrity/add", method="post")
+              div.form-group
+                input(id="celebrityName", class="form-control", type="text", placeholder="Celebrity", name="celeb")
+              
+    block content
