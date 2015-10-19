@@ -3,5 +3,10 @@ html
     title!= title
   body
     h1!= message
+    ul.celebrities
+    
+    form(id="celebrity", name="celebrity", action="/celebrity/add", method="post")
+      input(id="celebrityName" type="text", placeholder="Celebrity", name="celeb")
+
     script(src='/socket.io/socket.io.js')
-    script(src='/js/socket.script.js')
+    script(src='/js/script.js')
