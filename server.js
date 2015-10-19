@@ -1,9 +1,13 @@
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var express = require('express');
+var app     = express();
+var server  = require('http').Server(app);
+var io      = require('socket.io')(server);
+
+app.set('view engine', 'jade');
+app.use(express.static('public'));
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.render('index', { title: 'Hey', message: 'Hello World!'});
 });
 
 io.on('connection', function (socket) {
@@ -14,3 +18,4 @@ io.on('connection', function (socket) {
 });
 
 server.listen(3000);
+console.log('Server running at http://localhost:3000');
