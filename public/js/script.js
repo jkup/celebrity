@@ -1,22 +1,27 @@
-var socket        = io.connect('http://localhost:3000');
-var list          = document.querySelector('.celebrities');
+var socket = io.connect('http://localhost:3000');
 
-socket.on('newCelebrity', function (data) {
-  var item     = document.createElement('li');
-  var itemText = document.createTextNode(data.name);
-
-  item.appendChild(itemText);
-  list.appendChild(item);
-
-  document.getElementById('celebrityName').value = "";
+socket.on('currentUsers', function (data) {
+  $('#users').html("Current Users: " + data.users);
 });
 
-var el = document.getElementById('celebrity');
+socket.on('currentCelebs', function(data) {
+  data.celebs.forEach(function(celeb) {
+    $('#celebrities').append('<li>' + celeb + '</li>');
+  });
+});
 
-el.addEventListener('submit', function(e) {
+socket.on('newCelebrity', function (data) {
+  $('#celebrities').append('<li>' + data.name + '</li>');
+});
+
+$('#addCeleb').on('submit', function(e) {
+  var celebInput = $('#celebrity');
+
   e.preventDefault();
 
-  var celebrityName = document.getElementById('celebrityName').value;
+  socket.emit('addCeleb', { celeb: celebInput.val() });
 
-  socket.emit('addCelebrity', { name: celebrityName });
+  // Clear input
+  celebInput.val('');
+
 });

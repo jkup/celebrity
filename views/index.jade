@@ -1,7 +1,10 @@
 extends layouts/header
 block content
-      h1!= message
-      ul.celebrities
-
-      script(src='/socket.io/socket.io.js')
-      script(src='/js/script.js')
+  h1 Add Celebrities
+  div#users
+  ul#celebrities
+  form(id='addCeleb')
+    input(type="text", id="celebrity")
+  script(src="js/jquery.min.js")
+  script(src="/socket.io/socket.io.js")
+  script(src="js/script.js")
