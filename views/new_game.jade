@@ -1,0 +1,10 @@
+extends layouts/header
+block content
+  h1 Game id: 1
+  div#users
+  div#celebrity-count
+  form(id='addCeleb')
+    input(type="text", id="celebrity")
+  script(src="js/jquery.min.js")
+  script(src="/socket.io/socket.io.js")
+  script(src="js/script.js")

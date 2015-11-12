@@ -12,6 +12,12 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/new', function (req, res) {
+  res.render('new_game', {
+    title: 'New Game'
+  });
+});
+
 var currentUsers = 0;
 var celebrities = [];
 
@@ -31,7 +37,7 @@ io.on('connection', function (socket) {
     var celebToAdd = data.celeb;
 
     celebrities.push(celebToAdd);
-    io.emit('newCelebrity', { name: celebToAdd });
+    io.emit('newCelebrity', { name: celebToAdd, count: celebrities.length });
   });
 
   // User disconnects, lower user count and distribute
