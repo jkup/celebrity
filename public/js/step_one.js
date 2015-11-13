@@ -1,7 +1,7 @@
 var socket = io.connect('http://localhost:3000');
 
 socket.on('currentUsers', function (data) {
-  $('#users').html("Current users: " + data.users);
+  $('#users').html("Total users playing: " + data.users);
 });
 
 socket.on('currentCelebs', function(data) {

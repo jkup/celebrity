@@ -1,19 +1,28 @@
 extends layouts/header
 block content
-  h1 Welcome to Celebrity
+  h1.welcome Welcome to Celebrity!
   if error
     div#error= error
   else
     div#error
-  form(id='createGame')
-    div#formError
-    label(for='create') Create a new room
-    input(type='text', id='create', placeholder='New room name')
-    button#start-game Start a new game
-  form(id='joinGame')
-    label(for='join') Enter room name
-    input(type='text', id='join', placeholder='Existing room name')
-    button#join-game Join a game
+  div.row
+    div.col-md-6.section
+      div.row
+        div.col-md-8.col-md-offset-2.col-sm-12
+          form(id='createGame')
+            div#formError
+            h2 Start a new game
+            label.hidden(for='create') New room name
+            input.form-control(type='text', id='create', placeholder='New room name')
+            button#start-game.btn.btn-warning.form-control Start
+    div.col-md-6.section
+      div.row
+        div.col-md-8.col-md-offset-2.col-sm-12
+          form(id='joinGame')
+            h2 Join an existing game
+            label.hidden(for='join') Existing room name
+            input.form-control(type='text', id='join', placeholder='Existing room name')
+            button#join-game.btn.btn-success.form-control Join
   script(src='/js/jquery.min.js')
   script(src='/socket.io/socket.io.js')
   script(src='/js/game_creation.js')

@@ -1,10 +1,11 @@
 extends layouts/header
 block content
-  h1= title
+  h1 Currently on step 1 of 3
+  h2 Enter 3 more names to continue
   div#users
   ul#celebrities
   form(id='addCeleb')
     input(type='text', id='celebrity')
   script(src='/js/jquery.min.js')
   script(src='/socket.io/socket.io.js')
-  script(src='/js/game.js')
+  script(src='/js/step_one.js')

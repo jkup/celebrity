@@ -22,8 +22,8 @@ app.get('/game/:gameId', function (req, res) {
 
   // if the room exists, take the user to it
   if (roomsNames.indexOf(game) !== -1) {
-    res.render('game', {
-      title: game
+    res.render('step_one', {
+      roomName: game
     });
     // otherwise take them back to the home page
   } else {

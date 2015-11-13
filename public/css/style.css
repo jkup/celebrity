@@ -2,3 +2,54 @@
 #formError {
   color: red;
 }
+/* orange: #ff9900 */
+/* grey: #50514F */
+/* red: #f25f5c */
+/* green: #48D5B5 */
+
+body {
+  color: #50514F;
+}
+
+body.celebrity {
+  background: #EEE;
+}
+
+body .navbar-default {
+  background-color: #f25f5c;
+  border-color: #f25f5c;
+  border-radius: 0;
+}
+
+body .navbar-default .navbar-nav > li > a {
+  color: #FFF;
+  font-size: 18px;
+}
+
+.welcome {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 45px;
+}
+
+.hidden {
+  display: none;
+}
+
+.section {
+  text-align: center;
+}
+
+.section input {
+  margin: 25px 0 0 0;
+}
+
+.section button {
+  margin: 25px 0;
+}
+
+#join-game,
+#start-game {
+  background-color: #48D5B5;
+  border-color: #48D5B5;
+}
