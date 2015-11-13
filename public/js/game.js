@@ -20,7 +20,6 @@ $('#addCeleb').on('submit', function(e) {
   var celebInput = $('#celebrity');
 
   e.preventDefault();
-  console.log(celebInput.val());
 
   socket.emit('addCeleb', { celeb: celebInput.val() });
 

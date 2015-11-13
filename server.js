@@ -63,6 +63,15 @@ io.on('connection', function (socket) {
     }
   });
 
+  socket.on('joinRoom', function(data) {
+    var roomName = data.roomName;
+    if (roomsNames.indexOf(roomName) !== -1) {
+      socket.emit('roomCreated', { roomName: roomName });
+    } else {
+      socket.emit('roomFailed', { message: 'That room doesn\'t exist' });
+    }
+  });
+
   // User disconnects, lower user count and distribute
   // new count to all clients
   socket.on('disconnect', function() {

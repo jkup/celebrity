@@ -13,6 +13,14 @@
     }
   });
 
+  $('#join-game').on('click', function(e) {
+    e.preventDefault();
+
+    var $joinVal = $('#join').val();
+
+    socket.emit('joinRoom', { roomName: $joinVal });
+  });
+
   socket.on('roomCreated', function(data) {
     window.location = 'http://localhost:3000/game/' + data.roomName;
   });
