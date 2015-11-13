@@ -1,10 +1,18 @@
 extends layouts/header
 block content
-  h1 Add Celebrities
-  div#users
-  ul#celebrities
-  form(id='addCeleb')
-    input(type="text", id="celebrity")
-  script(src="js/jquery.min.js")
-  script(src="/socket.io/socket.io.js")
-  script(src="js/script.js")
+  h1 Welcome to Celebrity
+  if error
+    div#error= error
+  else
+    div#error
+  form(id='createGame')
+    div#formError
+    label(for='create') Create a new room
+    input(type='text', id='create', placeholder='New room name')
+    button#start-game Start a new game
+  form(id='joinGame')
+    label(for='join') Enter room name
+    input(type='text', id='join', placeholder='Existing room name')
+  script(src='js/jquery.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='js/index.js')

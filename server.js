@@ -3,6 +3,11 @@ var app     = express();
 var server  = require('http').Server(app);
 var io      = require('socket.io')(server);
 
+// Application variables
+var currentUsers = 0;
+var celebrities  = [];
+var roomsNames   = [];
+
 app.set('view engine', 'jade');
 app.use(express.static('public'));
 
@@ -12,14 +17,22 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/new', function (req, res) {
-  res.render('new_game', {
-    title: 'New Game'
-  });
-});
+app.get('/game/:gameId', function (req, res) {
+  var game = req.params.gameId;
 
-var currentUsers = 0;
-var celebrities = [];
+  // if the room exists, take the user to it
+  if (roomsNames.indexOf(game) !== -1) {
+    res.render('game', {
+      title: game
+    });
+    // otherwise take them back to the home page
+  } else {
+    res.render('index', {
+      title: 'Celebrity',
+      error: 'That room doesn\'t exist.'
+    });
+  }
+});
 
 io.on('connection', function (socket) {
   // New user connects, up user count and distribute
@@ -38,6 +51,16 @@ io.on('connection', function (socket) {
 
     celebrities.push(celebToAdd);
     io.emit('newCelebrity', { name: celebToAdd, count: celebrities.length });
+  });
+
+  socket.on('newRoom', function(data) {
+    var roomName = data.roomName;
+    if (roomsNames.indexOf(roomName) === -1) {
+      roomsNames.push(roomName);
+      socket.emit('roomCreated', { roomName: roomName });
+    } else {
+      socket.emit('roomFailed', { message: 'That room already exists' });
+    }
   });
 
   // User disconnects, lower user count and distribute
