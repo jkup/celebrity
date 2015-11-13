@@ -26,6 +26,6 @@
   });
 
   socket.on('roomFailed', function(data) {
-    $('#error').text('Error: That room already exists.');
+    $('#error').text('Error: ' + data.message);
   })
 })();
