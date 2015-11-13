@@ -53,3 +53,27 @@ body .navbar-default .navbar-nav > li > a {
   background-color: #48D5B5;
   border-color: #48D5B5;
 }
+
+.headers {
+  text-align: center;
+}
+
+#celebrities {
+  margin: 25px 0;
+}
+
+#celebrities li {
+  background: #48D5B5;
+  color: #FFF;
+  border-radius: 10px;
+  padding: 10px 25px;
+  float: left;
+  list-style: none;
+  margin: 0 25px;
+}
+
+#users {
+  display: block;
+  margin-top: 100px;
+  text-align: center;
+}
