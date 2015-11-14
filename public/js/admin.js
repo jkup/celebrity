@@ -1,29 +1,28 @@
-var socket = io.connect('http://localhost:3000');
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
 
-socket.on('currentUsers', function (data) {
-  $('#users').html("Total users playing: " + data.users);
-});
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-socket.on('currentCelebs', function(data) {
-  data.celebs.forEach(function(celeb) {
-    $('#celebrities').append('<li>' + celeb + '</li>');
-    $('#celebrity-count').html("Celebrities added: " + data.celebs.length);
-  });
-});
+        display.textContent = minutes + ":" + seconds;
 
-socket.on('newCelebrity', function (data) {
-  $('#celebrities').append('<li>' + data.name + '</li>');
-  $('#celebrity-count').html("Celebrities added: " + data.count);
-});
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
 
-$('#addCeleb').on('submit', function(e) {
-  var celebInput = $('#celebrity');
+window.onload = function () {
+    var count = 12;
+    var fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
 
-  e.preventDefault();
-
-  socket.emit('addCeleb', { celeb: celebInput.val() });
-
-  // Clear input
-  celebInput.val('');
-
-});
+    $('#next').on('click', function() {
+      count++
+      $('#points').text(count + ' points')
+    });
+};

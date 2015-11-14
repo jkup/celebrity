@@ -82,3 +82,33 @@ body .navbar-default .navbar-nav > li > a {
 .celebItem {
   width: 100%;
 }
+
+#next {
+  background-color: #48D5B5;
+  border-color: #48D5B5;
+  padding: 10px 25px;
+  margin: 25px 0;
+}
+
+#skip {
+  background-color: #f25f5c;
+  border-color: #f25f5c;
+  padding: 10px 25px;
+  margin: 25px 0;
+}
+
+
+.paper {
+  position: relative;
+  text-align: center;
+  padding: 50px;
+  margin: 0 auto;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.center {
+  text-align: center;
+}

@@ -1,15 +1,25 @@
 extends layouts/header
 block content
   div.headers
-    h1 You started a new game called: 
-      span= roomName
-  div Currently, 
-    span.userCount users have added
-    span.celebCount celebrities!
-    
-  form(id='startGame')
-    div#formError
-    button#start-game.btn.btn-warning.form-control Start the game!
+    h1#time 05:00
+  div.row
+    div.col-md-3
+      div.panel.panel-default
+        div.panel-body.text-center
+          h2 Team A
+          div#points 12 points
+    div.col-md-6
+      h1.paper Julia Roberts
+      div.row.center
+        div.col-md-6
+          button#skip.btn.btn-lg.btn-warning Skip
+        div.col-md-6
+          button#next.btn.btn-lg.btn-success Next
+    div.col-md-3
+      div.panel.panel-default
+        div.panel-body.text-center
+          h2 Team B
+          div 15 points
   script(src='/js/jquery.min.js')
   script(src='/socket.io/socket.io.js')
   script(src='/js/admin.js')
