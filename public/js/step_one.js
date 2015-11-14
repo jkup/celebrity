@@ -1,4 +1,6 @@
 var socket = io.connect('http://localhost:3000');
+var celebCount = 0;
+
 // Initialize progressbar
 $('.progress .progress-bar').progressbar();
 
@@ -25,6 +27,12 @@ $('#addCeleb').on('submit', function(e) {
   e.preventDefault();
 
   socket.emit('addCeleb', { roomName: currentRoom, celeb: celebInput.val() });
+
+  celebCount++;
+  // When you've added your last celeb
+  if (celebCount > 2) {
+    window.location = 'http://localhost:3000/game/' + currentRoom + '/2';
+  }
 
   // Clear input
   celebInput.val('');

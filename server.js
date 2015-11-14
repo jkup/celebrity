@@ -18,12 +18,29 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/game/:gameId', function (req, res) {
+app.get('/game/:gameId/1', function (req, res) {
   var gameToJoin = req.params.gameId;
 
   // if the room exists, take the user to it
   if (gameToJoin in game.rooms) {
     res.render('step_one', {
+      roomName: gameToJoin
+    });
+    // otherwise take them back to the home page
+  } else {
+    res.render('game_creation', {
+      title: 'Celebrity',
+      error: 'That room doesn\'t exist.'
+    });
+  }
+});
+
+app.get('/game/:gameId/2', function (req, res) {
+  var gameToJoin = req.params.gameId;
+
+  // if the room exists, take the user to it
+  if (gameToJoin in game.rooms) {
+    res.render('step_two', {
       roomName: gameToJoin
     });
     // otherwise take them back to the home page

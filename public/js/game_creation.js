@@ -31,7 +31,7 @@
 
   socket.on('roomJoined', function(data) {
     Cookies.set('roomName', data.roomName);
-    window.location = 'http://localhost:3000/game/' + data.roomName;
+    window.location = 'http://localhost:3000/game/' + data.roomName + '/1';
   });
 
   socket.on('roomFailed', function(data) {
