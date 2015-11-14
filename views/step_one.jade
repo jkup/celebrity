@@ -3,6 +3,8 @@ block content
   div.headers
     h1 Currently on step 1 of 3
     h2 Enter 3 more names to continue
+    div.progress
+      div(class='progress-bar', role='progressbar', data-transitiongoal='75')
   form(id='addCeleb')
     input(type='text', id='celebrity')
   ul#celebrities
@@ -10,4 +12,5 @@ block content
   script(src='/js/jquery.min.js')
   script(src='/socket.io/socket.io.js')
   script(src='/js/jscookie.js')
+  script(src='/js/progressbar.js')
   script(src='/js/step_one.js')

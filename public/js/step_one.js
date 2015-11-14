@@ -1,4 +1,6 @@
 var socket = io.connect('http://localhost:3000');
+// Initialize progressbar
+$('.progress .progress-bar').progressbar();
 
 socket.on('currentUsers', function (data) {
   $('#users').html("Total users playing: " + data.users);
