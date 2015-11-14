@@ -17,6 +17,8 @@ function startTimer(duration, display) {
 
 window.onload = function () {
     var count = 12;
+    var counter = 0;
+    var names = ['Beyonce', 'Madonna'];
     var fiveMinutes = 60 * 5,
         display = document.querySelector('#time');
     startTimer(fiveMinutes, display);
@@ -24,5 +26,7 @@ window.onload = function () {
     $('#next').on('click', function() {
       count++
       $('#points').text(count + ' points')
+      $('.paper').text(names[counter]);
+      counter++;
     });
 };
