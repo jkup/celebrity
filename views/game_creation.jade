@@ -13,7 +13,12 @@ block content
             div#formError
             h2 Start a new game
             label.hidden(for='create') New room name
-            input.form-control(type='text', id='create', placeholder='New room name')
+            input.form-control(
+              type='text',
+              id='create',
+              placeholder='New room name',
+              autocomplete='off'
+            )
             button#start-game.btn.btn-warning.form-control Start
     div.col-md-6.section
       div.row
@@ -21,7 +26,12 @@ block content
           form(id='joinGame')
             h2 Join an existing game
             label.hidden(for='join') Existing room name
-            input.form-control(type='text', id='join', placeholder='Existing room name')
+            input.form-control(
+              type='text',
+              id='join',
+              placeholder='Existing room name',
+              autocomplete='off'
+            )
             button#join-game.btn.btn-success.form-control Join
   div#users
   script(src='/js/jquery.min.js')

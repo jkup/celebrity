@@ -1,8 +1,14 @@
 extends layouts/header
 block content
-  div.headers
-  h1 Team A
-  h1 Team B
+  div.row
+    div.col-md-6.section
+      h1 Team A
+      h2 Current Score: 
+        span 0
+    div.col-md-6.section
+      h1 Team B
+      h2 Current Score 
+        span 0
   script(src='/js/jquery.min.js')
   script(src='/socket.io/socket.io.js')
   script(src='/js/jscookie.js')
