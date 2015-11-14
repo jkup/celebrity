@@ -1,14 +1,14 @@
 extends layouts/header
 block content
-  div.headers
-    h1 Currently on step 1 of 3
-    h2 Enter 3 more names to continue
-    div.progress
-      div(class='progress-bar', role='progressbar', data-transitiongoal='25')
-  form(id='addCeleb')
-    input(type='text', id='celebrity')
-  ul#celebrities
-  div#users
+  div.row
+    div.col-md-6.col-md-offset-3.col-sm-12
+      h2.text-center Enter 
+        span#namesNeeded 3 
+        span more names to continue
+      form(id='addCeleb')
+        input.form-control(type='text', id='celebrity', autocomplete='off')
+      ul#celebrities
+      div#users
   script(src='/js/jquery.min.js')
   script(src='/socket.io/socket.io.js')
   script(src='/js/jscookie.js')

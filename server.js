@@ -20,7 +20,7 @@ app.get('/game/:gameId/1', function (req, res) {
 
   // if the room exists, take the user to it
   if (gameToJoin in game.rooms) {
-    res.render('step_one', {
+    res.render('adding_celebs', {
       roomName: gameToJoin
     });
     // otherwise take them back to the home page
@@ -37,7 +37,7 @@ app.get('/game/:gameId/2', function (req, res) {
 
   // if the room exists, take the user to it
   if (gameToJoin in game.rooms) {
-    res.render('step_two', {
+    res.render('game_watch_mode', {
       roomName: gameToJoin
     });
     // otherwise take them back to the home page

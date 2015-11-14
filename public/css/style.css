@@ -78,3 +78,7 @@ body .navbar-default .navbar-nav > li > a {
   margin-top: 100px;
   text-align: center;
 }
+
+.celebItem {
+  width: 100%;
+}
