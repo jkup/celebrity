@@ -18,10 +18,11 @@ socket.on('newCelebrity', function (data) {
 
 $('#addCeleb').on('submit', function(e) {
   var celebInput = $('#celebrity');
+  var currentRoom = Cookies.get('roomName');
 
   e.preventDefault();
 
-  socket.emit('addCeleb', { celeb: celebInput.val() });
+  socket.emit('addCeleb', { roomName: currentRoom, celeb: celebInput.val() });
 
   // Clear input
   celebInput.val('');

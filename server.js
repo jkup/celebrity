@@ -21,7 +21,6 @@ app.get('/', function (req, res) {
 app.get('/game/:gameId', function (req, res) {
   var gameToJoin = req.params.gameId;
 
-  console.log('do i get in here');
   // if the room exists, take the user to it
   if (gameToJoin in game.rooms) {
     res.render('step_one', {
@@ -63,6 +62,8 @@ io.on('connection', function (socket) {
   // to all clients
   socket.on('addCeleb', function (data) {
     var celebToAdd = data.celeb;
+    var roomToAddTo = data.roomName;
+    var celebrities = game.rooms[roomToAddTo].celebrities;
 
     celebrities.push(celebToAdd);
     io.emit('newCelebrity', { name: celebToAdd, count: celebrities.length });
