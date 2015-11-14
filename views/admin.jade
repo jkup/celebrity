@@ -1,0 +1,15 @@
+extends layouts/header
+block content
+  div.headers
+    h1 You started a new game called: 
+      span= roomName
+  div Currently, 
+    span.userCount users have added
+    span.celebCount celebrities!
+    
+  form(id='startGame')
+    div#formError
+    button#start-game.btn.btn-warning.form-control Start the game!
+  script(src='/js/jquery.min.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='/js/admin.js')

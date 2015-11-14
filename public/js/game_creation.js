@@ -21,7 +21,15 @@
     socket.emit('joinRoom', { roomName: $joinVal });
   });
 
+  socket.on('currentUsers', function (data) {
+    $('#users').html("Total users playing: " + data.users);
+  });
+
   socket.on('roomCreated', function(data) {
+    window.location = 'http://localhost:3000/game/' + data.roomName + '/admin';
+  });
+
+  socket.on('roomJoined', function(data) {
     window.location = 'http://localhost:3000/game/' + data.roomName;
   });
 

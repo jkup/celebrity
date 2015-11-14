@@ -4,32 +4,51 @@ var server  = require('http').Server(app);
 var io      = require('socket.io')(server);
 
 // Application variables
-var currentUsers = 0;
-var celebrities  = [];
-var roomsNames   = [];
+var game = {
+  totalUsers: 0,
+  rooms: {}
+}
 
 app.set('view engine', 'jade');
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
-  res.render('index', {
+  res.render('game_creation', {
     title: 'Celebrity'
   });
 });
 
 app.get('/game/:gameId', function (req, res) {
-  var game = req.params.gameId;
+  var gameToJoin = req.params.gameId;
 
+  console.log('do i get in here');
   // if the room exists, take the user to it
-  if (roomsNames.indexOf(game) !== -1) {
+  if (gameToJoin in game.rooms) {
     res.render('step_one', {
-      roomName: game
+      roomName: gameToJoin
     });
     // otherwise take them back to the home page
   } else {
-    res.render('index', {
+    res.render('game_creation', {
       title: 'Celebrity',
       error: 'That room doesn\'t exist.'
+    });
+  }
+});
+
+app.get('/game/:gameId/admin', function (req, res) {
+  var gameToJoin = req.params.gameId;
+
+  // if the room exists, take the user to it
+  if (gameToJoin in game.rooms) {
+    res.render('admin', {
+      roomName: gameToJoin
+    });
+    // otherwise take them back to the home page
+  } else {
+    res.render('game_creation', {
+      title: 'Celebrity',
+      error: 'That roooom doesn\'t exist.'
     });
   }
 });
@@ -37,12 +56,8 @@ app.get('/game/:gameId', function (req, res) {
 io.on('connection', function (socket) {
   // New user connects, up user count and distribute
   // new count to all clients
-  currentUsers++;
-  io.sockets.emit('currentUsers', { users: currentUsers });
-
-  if (celebrities.length > 0) {
-    socket.emit('currentCelebs', { celebs: celebrities });
-  }
+  game.totalUsers++;
+  io.sockets.emit('totalUsers', { users: game.totalUsers });
 
   // When a new celebrity is added, push new celebrity
   // to all clients
@@ -55,18 +70,20 @@ io.on('connection', function (socket) {
 
   socket.on('newRoom', function(data) {
     var roomName = data.roomName;
-    if (roomsNames.indexOf(roomName) === -1) {
-      roomsNames.push(roomName);
-      socket.emit('roomCreated', { roomName: roomName });
-    } else {
+
+    if (roomName in game.rooms) {
       socket.emit('roomFailed', { message: 'That room already exists' });
+    } else {
+      game.rooms[roomName] = { currentUsers: 0, celebrities: [] };
+      socket.emit('roomCreated', { roomName: roomName });
     }
   });
 
   socket.on('joinRoom', function(data) {
     var roomName = data.roomName;
-    if (roomsNames.indexOf(roomName) !== -1) {
-      socket.emit('roomCreated', { roomName: roomName });
+
+    if (roomName in game.rooms) {
+      socket.emit('roomJoined', { roomName: roomName });
     } else {
       socket.emit('roomFailed', { message: 'That room doesn\'t exist' });
     }
@@ -75,8 +92,8 @@ io.on('connection', function (socket) {
   // User disconnects, lower user count and distribute
   // new count to all clients
   socket.on('disconnect', function() {
-    currentUsers--;
-    io.sockets.emit('currentUsers', { users: currentUsers });
+    game.totalUsers--;
+    io.sockets.emit('totalUsers', { users: game.totalUsers });
   });
 });
 
